@@ -1,10 +1,11 @@
-export class EdgeFetchEvent implements FetchEvent {
+export class EdgeFetchEvent extends FetchEvent {
   readonly type: 'fetch'
   readonly request: Request
   _response: Response | Promise<Response> | null = null
   readonly _wait_until_promises: Promise<any>[] = []
 
-  constructor(type: 'fetch', init: FetchEventInit) {
+  constructor(type: 'fetch', init: any) {
+    super(type, init);
     if (type != 'fetch') {
       throw new Error('only "fetch" events are supported')
     }
